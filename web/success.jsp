@@ -1,16 +1,15 @@
 <%-- 
-    Document   : error.jsp
-    Created on : Jan 3, 2024, 2:07:22 PM
+    Document   : success
+    Created on : Jan 3, 2024, 2:08:05 PM
     Author     : User
 --%>
 
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Error</title>
+    <title>Success</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
     <style>
         body {
@@ -19,7 +18,7 @@
             background: #EBF0F5;
         }
         h1 {
-            color: red;
+            color: #88B04B;
             font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
             font-weight: 900;
             font-size: 40px;
@@ -31,15 +30,9 @@
             font-size: 20px;
             margin: 0;
         }
-        ul {
-            color: #404F5E;
-            font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
-            font-size: 20px;
-            margin: 0;
-        }
         i {
-            color: red;
-            font-size: 170px;
+            color: #9ABC66;
+            font-size: 100px;
             line-height: 200px;
             margin-left: -15px;
         }
@@ -53,7 +46,7 @@
         }
         .back-button {
             display: inline-block;
-            background-color: red;
+            background-color: #88B04B;
             color: white;
             padding: 10px 20px;
             text-align: center;
@@ -68,19 +61,10 @@
 <body>
     <div class="card">
         <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
-            <i class="crossmark">&#215;</i>
+            <i class="checkmark">✓</i>
         </div>
-         <h1>Error!</h1>
-            <p>Please correct the following errors:<br/></p>
-            <ul>
-        <% List<String> errorMsgs = (List<String>) request.getAttribute("errorMsgs");
-            if (errorMsgs != null) {
-               for (String errorMsg : errorMsgs) { %>
-                  <%= errorMsg %>
-               <% }
-            } %>
-
-            </ul><br>
+        <h1>Success</h1> 
+        <p>Your data has been successfully added.</p><br>
         <a href="AdminPage.jsp" class="back-button">Main Page</a>
     </div>
 </body>

@@ -94,7 +94,7 @@
                     <div class="col-div-3">
                         <div class="box">
                             <p>4<br/><span>Room Types</span></p>
-                            <a href="roomPage.html" class="icon-link">
+                            <a href="roomPage.jso" class="icon-link">
                                 <i class="fa fa-bed box-icon"></i>
                             </a>
                         </div>
