@@ -20,6 +20,10 @@
         <servlet-name>RegCustServlet</servlet-name>
         <servlet-class>controller.RegCustServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>bookCustServlet</servlet-name>
+        <servlet-class>controller.bookCustServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginAdminServlet</servlet-name>
         <url-pattern>/LoginAdminServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>RegCustServlet</servlet-name>
         <url-pattern>/RegCustServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>bookCustServlet</servlet-name>
+        <url-pattern>/bookCustServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
