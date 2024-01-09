@@ -161,7 +161,7 @@
         <div class="row">
           <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
             
-            <- action="bookCustServlet" method="post" class="bg-white p-md-5 p-4 mb-5 border">
+            < form action="bookCustServlet" method="post" class="bg-white p-md-5 p-4 mb-5 border">
              
 
               
