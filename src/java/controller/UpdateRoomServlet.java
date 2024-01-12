@@ -35,9 +35,19 @@ public class UpdateRoomServlet extends HttpServlet {
         try{
             String roomID = request.getParameter("roomID");
             String roomStatus = request.getParameter("roomStatus");
+            double roomPrice = Double.parseDouble(request.getParameter("roomPrice"));
+            int roomPax = Integer.parseInt(request.getParameter("roomPax"));
             
             if (roomStatus == null || roomStatus.isEmpty()) {
                 errorMsgs.add("Room Status is required");
+            }
+            
+            if (roomPrice == 0.00) {
+                errorMsgs.add("Room Price is required");
+            }
+
+            if (roomPax == 0) {
+                errorMsgs.add("Room Pax is required");
             }
             
             if (!errorMsgs.isEmpty()) {
@@ -47,8 +57,10 @@ public class UpdateRoomServlet extends HttpServlet {
             }
             
             RoomDashboardBean room = new RoomDashboardBean();
-            room.setRoomNum(roomID);
+            room.setRoomID(roomID);
             room.setRoomStatus(roomStatus);
+            room.setRoomPrice(roomPrice);
+            room.setRoomPax(roomPax);
             
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             connection = DriverManager.getConnection("jdbc:derby://localhost:1527/KingLandHotel", "app", "app");
@@ -58,10 +70,13 @@ public class UpdateRoomServlet extends HttpServlet {
             String action = request.getParameter("action");
             if ("Update".equals(action)) {
                 
-                String updateQuery = "UPDATE ROOM SET ROOMSTATUS=? WHERE ROOMID=?";
+                String updateQuery = "UPDATE ROOM SET ROOMSTATUS=?, ROOMPRICE=?, ROOMPAX=? WHERE ROOMID=?";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
                     preparedStatement.setString(1, room.getRoomStatus());
-                    preparedStatement.setString(2, room.getRoomNum());
+                    preparedStatement.setDouble(2, room.getRoomPrice());
+                    preparedStatement.setInt(3, room.getRoomPax());
+                    preparedStatement.setString(4, room.getRoomID());
+
 
                     preparedStatement.executeUpdate();
 
