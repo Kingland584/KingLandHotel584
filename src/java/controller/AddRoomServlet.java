@@ -83,24 +83,30 @@ public class AddRoomServlet extends HttpServlet {
         
         try{
             String roomID = request.getParameter("roomID");
-            String roomNum = request.getParameter("roomNum");
-            String roomStatus = request.getParameter("roomStatus");
             String roomType = request.getParameter("roomType");
+            String roomStatus = request.getParameter("roomStatus");
+            double roomPrice = Double.parseDouble(request.getParameter("roomPrice"));
+            int roomPax = Integer.parseInt(request.getParameter("roomPax"));
+            
             
             if (roomID == null || roomID.isEmpty()) {
                 errorMsgs.add("Room ID is required");
             }
             
-            if (roomNum == null || roomNum.isEmpty()) {
-                errorMsgs.add("Room Number is required");
+            if (roomType == null || roomType.isEmpty()) {
+                errorMsgs.add("Room Type is required");
             }
             
             if (roomStatus == null || roomStatus.isEmpty()) {
                 errorMsgs.add("Room Status is required");
             }
+            
+            if (roomPrice == 0.00) {
+                errorMsgs.add("Room Price is required");
+            }
 
-            if (roomType == null || roomType.isEmpty()) {
-                errorMsgs.add("Room Type is required");
+            if (roomPax == 0) {
+                errorMsgs.add("Room Pax is required");
             }
 
             if (!errorMsgs.isEmpty()) {
@@ -111,9 +117,10 @@ public class AddRoomServlet extends HttpServlet {
             
             RoomDashboardBean room = new RoomDashboardBean();
             room.setRoomID(roomID);
-            room.setRoomNum(roomNum);
-            room.setRoomStatus(roomStatus);
             room.setRoomType(roomType);
+            room.setRoomStatus(roomStatus);
+            room.setRoomPrice(roomPrice);
+            room.setRoomPax(roomPax);
             
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             connection = DriverManager.getConnection("jdbc:derby://localhost:1527/KingLandHotel", "app", "app");
@@ -123,12 +130,13 @@ public class AddRoomServlet extends HttpServlet {
             String action = request.getParameter("action");
             if ("Add".equals(action)) {
                 
-                String insertQuery = "INSERT INTO ROOM (ROOMID, ROOMNUMBER, ROOMSTATUS, ROOMTYPE) VALUES (?,?,?,?)";
+                String insertQuery = "INSERT INTO ROOM (ROOMID, ROOMTYPE, ROOMSTATUS, ROOMPRICE,ROOMPAX) VALUES (?,?,?,?,?)";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
                     preparedStatement.setString(1, room.getRoomID());
-                    preparedStatement.setString(2, room.getRoomNum());
+                    preparedStatement.setString(2, room.getRoomType());
                     preparedStatement.setString(3, room.getRoomStatus());
-                    preparedStatement.setString(4, room.getRoomType());
+                    preparedStatement.setDouble(4, room.getRoomPrice());
+                    preparedStatement.setInt(5, room.getRoomPax());
 
                     preparedStatement.executeUpdate();
 
