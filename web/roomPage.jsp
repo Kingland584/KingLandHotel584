@@ -22,19 +22,20 @@
           </style>
     </head>
     <body>
-        <c:set var="roomID" value="${param.roomID}"/> 
-        <c:set var="roomNum" value="${param.roomNum}"/> 
-        <c:set var="roomStatus" value="${param.roomStatus}"/>         
-        <c:set var="roomType" value="${param.roomType}"/>
+        <c:set var="roomID" value="${param.roomID}"/>      
+        <c:set var="roomType" value="${param.roomType}"/> 
+        <c:set var="roomStatus" value="${param.roomStatus}"/>
+        <c:set var="roomPrice" value="${param.roomPrice}"/> 
+        <c:set var="roomPax" value="${param.roomPax}"/> 
         
-        <c:if test="${(roomID!=null)&&(roomNum!=null)&&(roomStatus!=null)&&(roomType!=null)}" var="result">
+        <c:if test="${(roomID!=null)&&(roomType!=null)&&(roomStatus!=null)&&(roomPrice!=null)&&(roomPax!=null)}" var="result">
             <sql:update var="result" dataSource="${myDatasource}">
-                INSERT INTO ROOM 
-                VALUES (?,?,?,?)
-                <sql:param value="${roomID}"/>  
-                <sql:param value="${roomNum}"/> 
-                <sql:param value="${roomStatus}"/>                
+                INSERT INTO ROOM VALUES (?,?,?,?,?)
+                <sql:param value="${roomID}"/>    
                 <sql:param value="${roomType}"/>
+                <sql:param value="${roomStatus}"/>
+                <sql:param value="${roomPrice}"/> 
+                <sql:param value="${roomPax}"/> 
             </sql:update>
         </c:if>
         
@@ -47,10 +48,10 @@
        
         <div id="mySidenav" class="sidenav">
         <p class="logo"><span>King</span>Land</p>
-      <a href="adminPage.html" class="icon-a"><i class="fa fa-users icons"></i>   Customers</a>
-      <a href="bookPage.html" class=""><i class="fa fa-list icons"></i>   Booking</a>
+      <a href="AdminPage.jsp" class="icon-a"><i class="fa fa-users icons"></i>   Customers</a>
+      <a href="BookPage.jsp" class=""><i class="fa fa-list icons"></i>   Booking</a>
       <a href="roomPage.jsp" class=""><i class="fa fa-tasks icons"></i>   Room</a>
-      <a href="index.html" class=""><i class="fa fa-users icons"></i>   Logout</a>
+      <a href="index.jsp" class=""><i class="fa fa-users icons"></i>   Logout</a>
     </div>
     <div id="main">
         <div class="head">
@@ -71,7 +72,7 @@
     <div class="col-div-3">
         <div class="box">
             <p>2<br/><span>Users</span></p>
-            <a href="adminPage.html" class="icon-link">
+            <a href="AdminPage.jsp" class="icon-link">
         <i class="fa fa-users box-icon"></i>
     </a>
         </div>
@@ -80,7 +81,7 @@
     <div class="col-div-3">
         <div class="box">
             <p>2<br/><span>Booking</span></p>
-            <a href="bookPage.html" class="icon-link">
+            <a href="BookPage.jsp" class="icon-link">
         <i class="fa fa-list box-icon"></i>
     </a>
         </div>
@@ -110,9 +111,10 @@
                 <!-- column headers -->
                 <tr>
                     <th>Room ID</th>
-                    <th>Room Number</th>
-                    <th>Room Status</th>
                     <th>Type Of Room</th>
+                    <th>Room Status</th>
+                    <th>Room Price</th>
+                    <th>Room Pax</th>
                     <th>Update</th>
                     <th>Delete</th>
                 </tr>
@@ -120,13 +122,13 @@
                 <c:forEach var="row" items="${result.rowsByIndex}">
                     <tr>
                         <c:forEach var="column" items="${row}" varStatus="loop">
-                            <c:if test="${loop.index <4}">
+                            <c:if test="${loop.index <5}">
                                 <td><c:out value="${column}" /></td>
                             </c:if>
                         </c:forEach>
 
                         <td>      
-                            <button class="update-button" onclick="window.location.href='updateRoom.jsp?roomID=${row[0]}&roomNum=${row[1]}&roomStatus=${row[2]}&roomType=${row[3]}'">
+                            <button class="update-button" onclick="window.location.href='updateRoom.jsp?roomID=${row[0]}&roomType=${row[1]}&roomStatus=${row[2]}&roomPrice=${row[3]}&roomPax=${row[4]}'">
                                 Update
                             </button>
                         </td>
