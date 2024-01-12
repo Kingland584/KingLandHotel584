@@ -25,13 +25,13 @@
 <body>
     <c:if test="${not empty param.bookingID}">
         <sql:update dataSource="${myDatasource}">
-            UPDATE BOOKING SET CHECKINDATE=?, CHECKOUTDATE=?, ROOMID=?, ADMINID=?, PAYMENTID=?, CUSTID=? WHERE BOOKINGID=? 
+            UPDATE BOOKING SET CHECKINDATE=?, CHECKOUTDATE=?, ROOMID=?, ADMINID=?, BOOKINGPRICE=?, CUSTID=? WHERE BOOKINGID=? 
 
             <sql:param value="${checkInDate}"/>
             <sql:param value="${checkOutDate}"/>
             <sql:param value="${roomID}"/>
             <sql:param value="${adminID}"/>
-            <sql:param value="${paymentID}"/>
+            <sql:param value="${bookingPrice}"/>
             <sql:param value="${custID}"/>            
             <sql:param value="${bookingID}"/>
         </sql:update>
@@ -74,8 +74,8 @@
                     </div>
 
                     <div class="formbold-mb-3">
-                        <label for="paymentID" class="formbold-form-label">Payment ID</label>
-                        <input type="text" name="paymentID" id="paymentID" class="formbold-form-input" value="${param.paymentID}" readonly/>
+                        <label for="bookingPrice" class="formbold-form-label">Price: RM</label>
+                        <input type="text" name="bookingPrice" id="bookingPrice" class="formbold-form-input" value="${param.bookingPrice}"/>
                     </div>
                     <button class="formbold-btn">Submit</button>
                 </form>
