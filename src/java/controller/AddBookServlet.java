@@ -29,7 +29,8 @@ public class AddBookServlet extends HttpServlet {
             String custID = request.getParameter("custID");            
             String roomID = request.getParameter("roomID");
             String adminID = request.getParameter("adminID");
-            String paymentID = request.getParameter("paymentID");
+            double bookingPrice = Double.parseDouble(request.getParameter("bookingPrice"));
+
             
             if (bookingID == null || bookingID.isEmpty()) {
                 errorMsgs.add("Booking ID is required");
@@ -55,9 +56,9 @@ public class AddBookServlet extends HttpServlet {
                 errorMsgs.add("Admin ID is required");
             }
             
-            if (paymentID == null || paymentID.isEmpty()) {
-                errorMsgs.add("Payment ID is required");
-            }
+            /*if (bookingPrice == null || bookingPrice.isEmpty()) {
+                errorMsgs.add("Booking Price is required");
+            }*/
 
             if (!errorMsgs.isEmpty()) {
                 request.setAttribute("errorMsgs", errorMsgs);
@@ -72,7 +73,7 @@ public class AddBookServlet extends HttpServlet {
             booking.setCustID(custID);
             booking.setRoomID(roomID);
             booking.setAdminID(adminID);
-            booking.setPaymentID(paymentID);
+            booking.setBookingPrice(bookingPrice);
             
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             connection = DriverManager.getConnection("jdbc:derby://localhost:1527/KingLandHotel", "app", "app");
@@ -82,7 +83,7 @@ public class AddBookServlet extends HttpServlet {
             String action = request.getParameter("action");
             if ("Add".equals(action)) {
                 
-                String insertQuery = "INSERT INTO BOOKING (BOOKINGID, CHECKINDATE, CHECKOUTDATE, CUSTID, ROOMID, ADMINID, PAYMENTID) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                String insertQuery = "INSERT INTO BOOKING (BOOKINGID, CHECKINDATE, CHECKOUTDATE, CUSTID, ROOMID, ADMINID, BOOKINGPRICE) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
                     preparedStatement.setString(1, booking.getBookingID());
                     preparedStatement.setString(2, booking.getCheckInDate());
@@ -90,7 +91,7 @@ public class AddBookServlet extends HttpServlet {
                     preparedStatement.setString(4, booking.getCustID());
                     preparedStatement.setString(5, booking.getRoomID());
                     preparedStatement.setString(6, booking.getAdminID());
-                    preparedStatement.setString(7, booking.getPaymentID());
+                    preparedStatement.setDouble(7, booking.getBookingPrice());
 
                     preparedStatement.executeUpdate();
 
