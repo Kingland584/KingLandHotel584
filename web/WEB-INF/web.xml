@@ -104,6 +104,30 @@
         <servlet-name>bookCustServlet</servlet-name>
         <url-pattern>/bookCustServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AddRoomServlet</servlet-name>
+        <servlet-class>controller.AddRoomServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateRoomServlet</servlet-name>
+        <servlet-class>controller.UpdateRoomServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteRoomServlet</servlet-name>
+        <servlet-class>controller.DeleteRoomServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddRoomServlet</servlet-name>
+        <url-pattern>/AddRoomServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateRoomServlet</servlet-name>
+        <url-pattern>/UpdateRoomServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteRoomServlet</servlet-name>
+        <url-pattern>/DeleteRoomServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
