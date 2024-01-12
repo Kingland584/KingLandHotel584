@@ -24,15 +24,21 @@
     </style>
 </head>
 <body>
+        <c:set var="roomID" value="${param.roomID}"/>      
+        <c:set var="roomType" value="${param.roomType}"/> 
+        <c:set var="roomStatus" value="${param.roomStatus}"/>
+        <c:set var="roomPrice" value="${param.roomPrice}"/> 
+        <c:set var="roomPax" value="${param.roomPax}"/> 
     
     <c:if test="${not empty param.roomID}">
         <sql:update dataSource="${myDatasource}">
-            UPDATE ROOM SET ROOMNUMBER=?, ROOMSTATUS=?, ROOMTYPE=? WHERE ROOMID=?
+            UPDATE ROOM SET ROOMTYPE=?, ROOMSTATUS=?, ROOMPRICE=?, ROOMPAX=? WHERE ROOMID=?
             
-            <sql:param value="${param.roomNum}"/>
-            <sql:param value="${param.roomStatus}"/>
-            <sql:param value="${param.roomType}"/>
-            <sql:param value="${param.roomID}"/>
+            <sql:param value="${roomType}"/>
+            <sql:param value="${roomStatus}"/>
+            <sql:param value="${roomPrice}"/> 
+            <sql:param value="${roomPax}"/> 
+            <sql:param value="${roomID}"/>
         </sql:update>
     </c:if>
 
@@ -55,29 +61,7 @@
                             />
                         </div>
                     </div>
-
-                    <div class="formbold-mb-3">
-                        <label for="roomNum" class="formbold-form-label">Room Number</label>
-                        <input
-                            type="text"
-                            name="roomNum"
-                            id="roomNum"
-                            class="formbold-form-input"
-                            value="${param.roomNum}" 
-                            readonly
-                        />
-                    </div>
-
-                    <div class="formbold-mb-3">
-                        <label for="roomStatus" class="formbold-form-label">Room Status</label>
-                        <select name="roomStatus" id="roomStatus" class="formbold-form-input">
-                            <option selected value="${param.roomStatus}">--Choose Room--</option>
-                            <option value="Available">Available</option>
-                            <option value="Reserved">Reserved</option>
-                            <option value="Occupied">Occupied</option>
-                        </select>
-                    </div>
-
+                                
                     <div class="formbold-mb-3">
                         <label for="roomType" class="formbold-form-label">Room Type</label>
                         <input
@@ -87,6 +71,38 @@
                             class="formbold-form-input"
                             value="${param.roomType}" 
                             readonly
+                        />
+                    </div>
+
+                    <div class="formbold-mb-3">
+                        <label for="roomStatus" class="formbold-form-label">Room Status</label>
+                        <select name="roomStatus" id="roomStatus" class="formbold-form-input">
+                            <option selected value="${param.roomStatus}">--Choose Status--</option>
+                            <option value="Available">Available</option>
+                            <option value="Reserved">Reserved</option>
+                            <option value="Occupied">Occupied</option>
+                        </select>
+                    </div>
+                            
+                    <div class="formbold-mb-3">
+                        <label for="roomPrice" class="formbold-form-label">Room Price (RM)</label>
+                        <input
+                            type="text"
+                            name="roomPrice"
+                            id="roomPrice"
+                            class="formbold-form-input"
+                            value="${param.roomPrice}" 
+                        />
+                    </div>
+                        
+                    <div class="formbold-mb-3">
+                        <label for="roomPax" class="formbold-form-label">Room Pax</label>
+                        <input
+                            type="text"
+                            name="roomPax"
+                            id="roomPax"
+                            class="formbold-form-input"
+                            value="${param.roomPax}" 
                         />
                     </div>
                     
