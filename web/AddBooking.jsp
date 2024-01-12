@@ -29,11 +29,11 @@
         <c:set var="custID" value="${param.custID}"/>
         <c:set var="roomID" value="${param.roomID}"/>
         <c:set var="adminID" value="${param.adminID}"/> 
-        <c:set var="paymentID" value="${param.paymentID}"/>
+        <c:set var="bookingPrice" value="${param.bookingPrice}"/>
         
-        <c:if test="${(bookingID!=null)&&(checkInDate!=null)&&(checkOutDate!=null)&&(custID!=null)&&(roomID!=null)&&(adminID!=null)&&(paymentID!=null)}" var="result">
+        <c:if test="${(bookingID!=null)&&(checkInDate!=null)&&(checkOutDate!=null)&&(custID!=null)&&(roomID!=null)&&(adminID!=null)&&(bookingPrice!=null)}" var="result">
             <sql:update var="result" dataSource="${myDatasource}">
-                INSERT INTO BOOKING (bookingID, checkInDate, checkOutDate, custID, roomID, adminID, paymentID)
+                INSERT INTO BOOKING (bookingID, checkInDate, checkOutDate, custID, roomID, adminID, bookingPrice)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
                 
                 <sql:param value="${bookingID}"/>
@@ -42,7 +42,7 @@
                 <sql:param value="${custID}"/>
                 <sql:param value="${roomID}"/>
                 <sql:param value="${adminID}"/>
-                <sql:param value="${paymentID}"/>
+                <sql:param value="${bookingPrice}"/>
             </sql:update>
 
         </c:if>
@@ -75,17 +75,26 @@
                     
                     <div class="formbold-mb-3">
                         <label for="roomID" class="formbold-form-label">Room ID</label>
-                        <input type="text" name="roomID" id="roomID" class="formbold-form-input" />
+                        <select name="roomID" id="roomID" class="formbold-form-input">
+                            <option value=""></option>
+                            <option value="R001">R001</option>
+                            <option value="R002">R002</option>
+                            <option value="R003">R003</option>
+                            <option value="R004">R004</option>
+                        </select>
                     </div>
 
                     <div class="formbold-mb-3">
                         <label for="adminID" class="formbold-form-label">Admin ID</label>
-                        <input type="text" name="adminID" id="adminID" class="formbold-form-input" />
+                        <select name="adminID" id="adminID" class="formbold-form-input">
+                            <option value=""></option>
+                            <option value="A001">A001</option>
+                        </select>
                     </div>
 
                     <div class="formbold-mb-3">
-                        <label for="paymentID" class="formbold-form-label">Payment ID</label>
-                        <input type="text" name="paymentID" id="paymentID" class="formbold-form-input" />
+                        <label for="bookingPrice" class="formbold-form-label">Price: RM</label>
+                        <input type="text" name="bookingPrice" id="bookingPrice" class="formbold-form-input" />
                     </div>
                     
                     <button class="formbold-btn">Submit</button>
