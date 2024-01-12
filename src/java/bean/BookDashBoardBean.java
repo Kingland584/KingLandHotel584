@@ -16,7 +16,7 @@ public class BookDashBoardBean {
     String custID;
     String roomID;
     String adminID;
-    String paymentID;
+    double bookingPrice;
 
     public BookDashBoardBean() {
     }
@@ -69,11 +69,13 @@ public class BookDashBoardBean {
         this.adminID = adminID;
     }
 
-    public String getPaymentID() {
-        return paymentID;
+    public double getBookingPrice() {
+        return bookingPrice;
     }
 
-    public void setPaymentID(String paymentID) {
-        this.paymentID = paymentID;
+    public void setBookingPrice(double bookingPrice) {
+        this.bookingPrice = bookingPrice;
     }
+
+    
 }
