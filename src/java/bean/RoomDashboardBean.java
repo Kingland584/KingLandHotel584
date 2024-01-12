@@ -11,50 +11,59 @@ package bean;
  */
 public class RoomDashboardBean implements java.io.Serializable{
     public String roomID;
-    public String roomNum;
-    public String roomStatus;
     public String roomType;
+    public String roomStatus;
+    public double roomPrice;
+    public int roomPax;
 
     public RoomDashboardBean() {
     }
 
-    public RoomDashboardBean(String roomID, String roomNum, String roomStatus, String roomType) {
+    public RoomDashboardBean(String roomID, String roomType, String roomStatus, double roomPrice, int roomPax) {
         this.roomID = roomID;
-        this.roomNum = roomNum;
-        this.roomStatus = roomStatus;
         this.roomType = roomType;
-    }
-
-    public String getRoomID() {
-        return roomID;
-    }
-
-    public String getRoomNum() {
-        return roomNum;
-    }
-
-    public String getRoomStatus() {
-        return roomStatus;
-    }
-
-    public String getRoomType() {
-        return roomType;
+        this.roomStatus = roomStatus;
+        this.roomPrice = roomPrice;
+        this.roomPax = roomPax;
     }
 
     public void setRoomID(String roomID) {
         this.roomID = roomID;
     }
 
-    public void setRoomNum(String roomNum) {
-        this.roomNum = roomNum;
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 
     public void setRoomStatus(String roomStatus) {
         this.roomStatus = roomStatus;
     }
 
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
+    public void setRoomPrice(double roomPrice) {
+        this.roomPrice = roomPrice;
     }
-    
+
+    public void setRoomPax(int roomPax) {
+        this.roomPax = roomPax;
+    }
+
+    public String getRoomID() {
+        return roomID;
+    }
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public String getRoomStatus() {
+        return roomStatus;
+    }
+
+    public double getRoomPrice() {
+        return roomPrice;
+    }
+
+    public int getRoomPax() {
+        return roomPax;
+    }
 }
