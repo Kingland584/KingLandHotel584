@@ -30,21 +30,21 @@
     </center>
     -->
         <c:set var="roomID" value="${param.roomID}"/>      
-        <c:set var="roomNum" value="${param.roomNum}"/> 
-        <c:set var="roomStatus" value="${param.roomStatus}"/>
         <c:set var="roomType" value="${param.roomType}"/> 
+        <c:set var="roomStatus" value="${param.roomStatus}"/>
+        <c:set var="roomPrice" value="${param.roomPrice}"/> 
+        <c:set var="roomPax" value="${param.roomPax}"/> 
         
-        <c:if test="${(roomID!=null)&&(roomNum!=null)&&(roomStatus!=null)&&(roomType!=null)}" var="result">
+        <c:if test="${(roomID!=null)&&(roomType!=null)&&(roomStatus!=null)&&(roomPrice!=null)&&(roomPax!=null)}" var="result">
             <sql:update var="result" dataSource="${myDatasource}">
-                INSERT INTO ROOM (ROOMID, ROOMNUMBER, ROOMSTATUS, ROOMTYPE) VALUES (?,?,?,?)
+                INSERT INTO ROOM (ROOMID, ROOMTYPE, ROOMSTATUS, ROOMPRICE,ROOMPAX) VALUES (?,?,?,?,?)
                 <sql:param value="${roomID}"/>    
-                <sql:param value="${roomNum}"/>
+                <sql:param value="${roomType}"/>
                 <sql:param value="${roomStatus}"/>
-                <sql:param value="${roomType}"/> 
+                <sql:param value="${roomPrice}"/> 
+                <sql:param value="${roomPax}"/> 
             </sql:update>
         </c:if>
-
-
         
     <div class="scrollable-container">
         <div class="formbold-main-wrapper">
@@ -53,19 +53,12 @@
                     <input type="hidden" name="action" value="Add"/>
                     <div class="formbold-mb-3">
                         <label for="roomID" class="formbold-form-label">Room ID</label>
-                        <input type="text" name="roomID" id="roomID" class="formbold-form-input" />
-                    </div>
-                    <div class="formbold-mb-3">
-                        <label for="roomNum" class="formbold-form-label">Room Number</label>
-                        <input type="text" name="roomNum" id="roomNum" class="formbold-form-input" />
-                    </div>
-                    <div class="formbold-mb-3">
-                        <label for="roomStatus" class="formbold-form-label">Room Status</label>
-                        <select name="roomStatus" id="roomStatus" class="formbold-form-input">
-                            <option selected>-- Choose Status --</option>
-                            <option value="Available">Available</option>
-                            <option value="Reserved">Reserved</option>
-                            <option value="Occupied">Occupied</option>
+                        <select name="roomID" id="roomID" class="formbold-form-input">
+                            <option selected>-- Choose ID --</option>
+                            <option value="R001">R001</option>
+                            <option value="R002">R002</option>
+                            <option value="R003">R003</option>
+                            <option value="R004">R004</option>
                         </select>
                     </div>
                     <div class="formbold-mb-3">
@@ -78,6 +71,25 @@
                             <option value="SuperiorKing">Superior King Room</option>
                         </select>
                     </div>
+                    <div class="formbold-mb-3">
+                        <label for="roomStatus" class="formbold-form-label">Room Status</label>
+                        <select name="roomStatus" id="roomStatus" class="formbold-form-input">
+                            <option selected>-- Choose Status --</option>
+                            <option value="Available">Available</option>
+                            <option value="Reserved">Reserved</option>
+                            <option value="Occupied">Occupied</option>
+                        </select>
+                    </div>
+                    <div class="formbold-mb-3">
+                        <label for="roomPrice" class="formbold-form-label">Room Price (RM)</label>
+                        <input type="text" name="roomPrice" id="roomPrice" class="formbold-form-input" />
+                    </div>
+                    <div class="formbold-mb-3">
+                        <label for="roomPax" class="formbold-form-label">Room Pax</label>
+                        <input type="text" name="roomPax" id="roomPax" class="formbold-form-input" />
+                    </div>
+                    
+                    
                     <button class="formbold-btn" type="submit" value="Save">Submit</button>
                 </form>
             </div>
