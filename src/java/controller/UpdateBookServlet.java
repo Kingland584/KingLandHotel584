@@ -26,6 +26,7 @@ public class UpdateBookServlet extends HttpServlet {
             String bookingID = request.getParameter("bookingID");
             String checkInDate = request.getParameter("checkInDate");
             String checkOutDate = request.getParameter("checkOutDate");
+            double bookingPrice = Double.parseDouble(request.getParameter("bookingPrice"));
             
             if (checkInDate == null || checkInDate.isEmpty()) {
                 errorMsgs.add("Check-in Date is required");
@@ -45,7 +46,8 @@ public class UpdateBookServlet extends HttpServlet {
             booking.setBookingID(bookingID);
             booking.setCheckInDate(checkInDate);
             booking.setCheckOutDate(checkOutDate);
-            
+            booking.setBookingPrice(bookingPrice);
+   
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             connection = DriverManager.getConnection("jdbc:derby://localhost:1527/KingLandHotel", "app", "app");
 
@@ -54,11 +56,12 @@ public class UpdateBookServlet extends HttpServlet {
             String action = request.getParameter("action");
             if ("Update".equals(action)) {
                 
-                String updateQuery = "UPDATE BOOKING SET CHECKINDATE=?, CHECKOUTDATE=? WHERE BOOKINGID=?";
+                String updateQuery = "UPDATE BOOKING SET CHECKINDATE=?, CHECKOUTDATE=?, BOOKINGPRICE=? WHERE BOOKINGID=?";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
                     preparedStatement.setString(1, booking.getCheckInDate());
                     preparedStatement.setString(2, booking.getCheckOutDate());
-                    preparedStatement.setString(3, booking.getBookingID());
+                    preparedStatement.setDouble(3, booking.getBookingPrice());
+                    preparedStatement.setString(4, booking.getBookingID());
 
                     preparedStatement.executeUpdate();
 
