@@ -29,9 +29,9 @@
     <c:set var="checkOutDate" value="${param.checkOutDate}"/> 
     <c:set var="roomID" value="${param.roomID}"/>
     <c:set var="adminID" value="${param.adminID}"/>
-    <c:set var="paymentID" value="${param.paymentID}"/>
+    <c:set var="bookingPrice" value="${param.bookingPrice}"/>
     
-    <c:if test="${(bookingID!=null)&&(checkInDate!=null)&&(checkOutDate!=null)&&(roomID!=null)&&(adminID!=null)&&(paymentID!=null)}" var="result">
+    <c:if test="${(bookingID!=null)&&(checkInDate!=null)&&(checkOutDate!=null)&&(roomID!=null)&&(adminID!=null)&&(bookingPrice!=null)}" var="result">
             <sql:update var="result" dataSource="${myDatasource}">
                 INSERT INTO BOOKING
                 VALUES (?,?,?,?,?,?)
@@ -41,7 +41,7 @@
                 <sql:param value="${checkOutDate}"/> 
                 <sql:param value="${roomID}"/>
                 <sql:param value="${adminID}"/>
-                <sql:param value="${paymentID}"/>
+                <sql:param value="${bookingPrice}"/>
                 
             </sql:update>
         </c:if>
@@ -72,30 +72,46 @@
                 </div>
                 <div class="clearfix"></div>
                 <br/>
-                <div class="col-div-3">
-                    <div class="box">
-                        <p>2<br/><span>Users</span></p>
-                        <a href="AdminPage.jsp" class="icon-link">
-                            <i class="fa fa-users box-icon"></i>
-                        </a>
+                
+                 <sql:query var="custCount" dataSource="${myDatasource}">
+                        SELECT COUNT(*) AS custCount FROM CUSTOMER
+                    </sql:query>
+
+                    <div class="col-div-3">
+                       <div class="box">
+                          <p>${custCount.rows[0].custCount}<br/><span>Customer</span></p>
+                          <a href="AdminPage.jsp" class="icon-link">
+                             <i class="fa fa-list box-icon"></i>
+                          </a>
+                       </div>
+                    </div>  
+
+                    <sql:query var="bookingCount" dataSource="${myDatasource}">
+                       SELECT COUNT(*) AS bookingCount FROM BOOKING
+                    </sql:query>
+
+                    <div class="col-div-3">
+                       <div class="box">
+                          <p>${bookingCount.rows[0].bookingCount}<br/><span>Booking</span></p>
+                          <a href="BookPage.jsp" class="icon-link">
+                             <i class="fa fa-list box-icon"></i>
+                          </a>
+                       </div>
                     </div>
-                </div>
-                <div class="col-div-3">
-                    <div class="box">
-                        <p>2<br/><span>Booking</span></p>
-                        <a href="BookPage.jsp" class="icon-link">
-                            <i class="fa fa-list box-icon"></i>
-                        </a>
+
+                    <sql:query var="roomCount" dataSource="${myDatasource}">
+                       SELECT COUNT(*) AS roomCount FROM ROOM
+                    </sql:query>
+
+                    <div class="col-div-3">
+                       <div class="box">
+                          <p>${roomCount.rows[0].roomCount}<br/><span>Room</span></p>
+                          <a href="roomPage.jsp" class="icon-link">
+                             <i class="fa fa-list box-icon"></i>
+                          </a>
+                       </div>
                     </div>
-                </div>
-                <div class="col-div-3">
-                    <div class="box">
-                        <p>4<br/><span>Room Types</span></p>
-                        <a href="roomPage.html" class="icon-link">
-                            <i class="fa fa-bed box-icon"></i>
-                        </a>
-                    </div>
-                </div>
+                          
                 <div class="clearfix"></div>
                 <br/><br/>
                 <div class="col-div-8">
@@ -114,7 +130,7 @@
                                     <th>Customer ID</th>
                                     <th>Room ID</th>
                                     <th>Admin ID</th>
-                                    <th>Payment ID</th>
+                                    <th>Price</th>
                                     <th>Update</th>
                                     <th>Delete</th>
                                 </tr>
@@ -126,7 +142,7 @@
                                             </c:if>
                                         </c:forEach>
                                         <td>
-                                            <button class="update-button" onclick="window.location.href='updateBooking.jsp?bookingID=${row[0]}&checkInDate=${row[1]}&checkOutDate=${row[2]}&custID=${row[3]}&roomID=${row[4]}&adminID=${row[5]}&paymentID=${row[6]}'">
+                                            <button class="update-button" onclick="window.location.href='updateBooking.jsp?bookingID=${row[0]}&checkInDate=${row[1]}&checkOutDate=${row[2]}&custID=${row[3]}&roomID=${row[4]}&adminID=${row[5]}&bookingPrice=${row[6]}'">
                                                 Update
                                             </button>
                                         </td>
