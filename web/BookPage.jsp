@@ -81,7 +81,7 @@
                        <div class="box">
                           <p>${custCount.rows[0].custCount}<br/><span>Customer</span></p>
                           <a href="AdminPage.jsp" class="icon-link">
-                             <i class="fa fa-list box-icon"></i>
+                             <i class="fa fa-users box-icon"></i>
                           </a>
                        </div>
                     </div>  
@@ -107,7 +107,7 @@
                        <div class="box">
                           <p>${roomCount.rows[0].roomCount}<br/><span>Room</span></p>
                           <a href="roomPage.jsp" class="icon-link">
-                             <i class="fa fa-list box-icon"></i>
+                             <i class="fa fa-bed box-icon"></i>
                           </a>
                        </div>
                     </div>
