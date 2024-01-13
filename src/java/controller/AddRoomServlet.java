@@ -86,7 +86,7 @@ public class AddRoomServlet extends HttpServlet {
             String roomType = request.getParameter("roomType");
             String roomStatus = request.getParameter("roomStatus");
             double roomPrice = Double.parseDouble(request.getParameter("roomPrice"));
-            int roomPax = Integer.parseInt(request.getParameter("roomPax"));
+            String roomPax = request.getParameter("roomPax");
             
             
             if (roomID == null || roomID.isEmpty()) {
@@ -105,7 +105,7 @@ public class AddRoomServlet extends HttpServlet {
                 errorMsgs.add("Room Price is required");
             }
 
-            if (roomPax == 0) {
+            if (roomPax == null || roomPax.isEmpty()) {
                 errorMsgs.add("Room Pax is required");
             }
 
@@ -136,7 +136,7 @@ public class AddRoomServlet extends HttpServlet {
                     preparedStatement.setString(2, room.getRoomType());
                     preparedStatement.setString(3, room.getRoomStatus());
                     preparedStatement.setDouble(4, room.getRoomPrice());
-                    preparedStatement.setInt(5, room.getRoomPax());
+                    preparedStatement.setString(5, room.getRoomPax());
 
                     preparedStatement.executeUpdate();
 
