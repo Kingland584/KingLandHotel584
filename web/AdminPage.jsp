@@ -54,7 +54,7 @@
                     <p class="logo"><span>King</span>Land</p>  
                     <a href="AdminPage.jsp" class="icon-a"><i class="fa fa-users icons"></i>   Customers</a>
                     <a href="BookPage.jsp" class=""><i class="fa fa-list icons"></i>   Booking</a>
-                    <a href="roomPage.html" class=""><i class="fa fa-tasks icons"></i>   Room</a>
+                    <a href="roomPage.jsp" class=""><i class="fa fa-tasks icons"></i>   Room</a>
                     <a href="index.html" class=""><i class="fa fa-users icons"></i>   Logout</a>
                 </div>
                 <div id="main">
@@ -73,31 +73,43 @@
                     <div class="clearfix"></div>
                     <br/>
                     
+                   <sql:query var="custCount" dataSource="${myDatasource}">
+                        SELECT COUNT(*) AS custCount FROM CUSTOMER
+                    </sql:query>
+
                     <div class="col-div-3">
-                        <div class="box">                                    
-                            <p>2<br/><span>Customer</span></p>
-                            <a href="AdminPage.jsp" class="icon-link">    
-                                <i class="fa fa-users box-icon"></i>
-                            </a>
-                        </div>
+                       <div class="box">
+                          <p>${custCount.rows[0].custCount}<br/><span>Customer</span></p>
+                          <a href="AdminPage.jsp" class="icon-link">
+                             <i class="fa fa-list box-icon"></i>
+                          </a>
+                       </div>
+                    </div>  
+
+                    <sql:query var="bookingCount" dataSource="${myDatasource}">
+                       SELECT COUNT(*) AS bookingCount FROM BOOKING
+                    </sql:query>
+
+                    <div class="col-div-3">
+                       <div class="box">
+                          <p>${bookingCount.rows[0].bookingCount}<br/><span>Booking</span></p>
+                          <a href="BookPage.jsp" class="icon-link">
+                             <i class="fa fa-list box-icon"></i>
+                          </a>
+                       </div>
                     </div>
-                    
+
+                    <sql:query var="roomCount" dataSource="${myDatasource}">
+                       SELECT COUNT(*) AS roomCount FROM ROOM
+                    </sql:query>
+
                     <div class="col-div-3">
-                        <div class="box">
-                            <p>2<br/><span>Booking</span></p>
-                            <a href="BookPage.jsp" class="icon-link">
-                                <i class="fa fa-list box-icon"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="col-div-3">
-                        <div class="box">
-                            <p>4<br/><span>Room Types</span></p>
-                            <a href="roomPage.jso" class="icon-link">
-                                <i class="fa fa-bed box-icon"></i>
-                            </a>
-                        </div>
+                       <div class="box">
+                          <p>${roomCount.rows[0].roomCount}<br/><span>Room</span></p>
+                          <a href="roomPage.jsp" class="icon-link">
+                             <i class="fa fa-list box-icon"></i>
+                          </a>
+                       </div>
                     </div>
                
                     <div class="clearfix"></div>
