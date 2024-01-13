@@ -53,23 +53,11 @@
                     <input type="hidden" name="action" value="Add"/>
                     <div class="formbold-mb-3">
                         <label for="roomID" class="formbold-form-label">Room ID</label>
-                        <select name="roomID" id="roomID" class="formbold-form-input">
-                            <option selected>-- Choose ID --</option>
-                            <option value="R001">R001</option>
-                            <option value="R002">R002</option>
-                            <option value="R003">R003</option>
-                            <option value="R004">R004</option>
-                        </select>
+                        <input type="text" name="roomID" id="roomID" class="formbold-form-input" />
                     </div>
                     <div class="formbold-mb-3">
-                        <label for="roomType" class="formbold-form-label">Room Type</label>
-                        <select name="roomType" id="roomType" class="formbold-form-input">
-                            <option selected>-- Choose Room --</option>
-                            <option value="Standard">Standard Room</option>
-                            <option value="Deluxe">Deluxe Room</option>
-                            <option value="Superior">Superior Room</option>
-                            <option value="SuperiorKing">Superior King Room</option>
-                        </select>
+                        <label for="roomType" class="formbold-form-label">Room Name</label>
+                        <input type="text" name="roomType" id="roomType" class="formbold-form-input" />
                     </div>
                     <div class="formbold-mb-3">
                         <label for="roomStatus" class="formbold-form-label">Room Status</label>
