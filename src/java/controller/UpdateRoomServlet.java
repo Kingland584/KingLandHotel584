@@ -36,7 +36,7 @@ public class UpdateRoomServlet extends HttpServlet {
             String roomID = request.getParameter("roomID");
             String roomStatus = request.getParameter("roomStatus");
             double roomPrice = Double.parseDouble(request.getParameter("roomPrice"));
-            int roomPax = Integer.parseInt(request.getParameter("roomPax"));
+            String roomPax = request.getParameter("roomPax");
             
             if (roomStatus == null || roomStatus.isEmpty()) {
                 errorMsgs.add("Room Status is required");
@@ -46,7 +46,7 @@ public class UpdateRoomServlet extends HttpServlet {
                 errorMsgs.add("Room Price is required");
             }
 
-            if (roomPax == 0) {
+            if (roomPax == null || roomPax.isEmpty()) {
                 errorMsgs.add("Room Pax is required");
             }
             
@@ -74,7 +74,7 @@ public class UpdateRoomServlet extends HttpServlet {
                 try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
                     preparedStatement.setString(1, room.getRoomStatus());
                     preparedStatement.setDouble(2, room.getRoomPrice());
-                    preparedStatement.setInt(3, room.getRoomPax());
+                    preparedStatement.setString(3, room.getRoomPax());
                     preparedStatement.setString(4, room.getRoomID());
 
 
