@@ -14,12 +14,12 @@ public class RoomDashboardBean implements java.io.Serializable{
     public String roomType;
     public String roomStatus;
     public double roomPrice;
-    public int roomPax;
+    public String roomPax;
 
     public RoomDashboardBean() {
     }
 
-    public RoomDashboardBean(String roomID, String roomType, String roomStatus, double roomPrice, int roomPax) {
+    public RoomDashboardBean(String roomID, String roomType, String roomStatus, double roomPrice, String roomPax) {
         this.roomID = roomID;
         this.roomType = roomType;
         this.roomStatus = roomStatus;
@@ -43,7 +43,7 @@ public class RoomDashboardBean implements java.io.Serializable{
         this.roomPrice = roomPrice;
     }
 
-    public void setRoomPax(int roomPax) {
+    public void setRoomPax(String roomPax) {
         this.roomPax = roomPax;
     }
 
@@ -63,7 +63,7 @@ public class RoomDashboardBean implements java.io.Serializable{
         return roomPrice;
     }
 
-    public int getRoomPax() {
+    public String getRoomPax() {
         return roomPax;
     }
 }
